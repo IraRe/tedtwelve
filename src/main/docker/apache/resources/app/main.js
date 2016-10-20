@@ -2,6 +2,14 @@
  * Created by dcreutz on 20.10.2016.
  */
 
-function submitMe() {
-    console.log("I'm ready for REST");
-}
+$('#formMe').on('submit', function(e){
+    e.preventDefault();
+    $.ajax({
+        type: "POST",
+        url: "/postinfo.php",
+        data: $(this).serialize(),
+        success: function() {
+            alert('success');
+        }
+    });
+});
