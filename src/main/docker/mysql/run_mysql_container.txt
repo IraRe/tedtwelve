@@ -1,1 +1,1 @@
-docker run --name mysql -e MYSQL_DATABASE=test -e MYSQL_USER=prodyna -e MYSQL_PASSWORD=prodyna -e MYSQL_ALLOW_EMPTY_PASSWORD=TRUE -p 3306:3306 -d mysql:latest
+docker run --name mysql -e MYSQL_DATABASE=test -e MYSQL_USER=prodyna -e MYSQL_PASSWORD=prodyna -e MYSQL_ALLOW_EMPTY_PASSWORD=TRUE -d mysql:latest
