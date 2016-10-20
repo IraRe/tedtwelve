@@ -8,10 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.prodyna.ted.entity.User;
 import com.prodyna.ted.service.UserService;
@@ -23,17 +20,20 @@ public class Application {
     @Autowired
     private UserService userService;
 
+    @CrossOrigin()
     @RequestMapping(value = "/helloworld", method = RequestMethod.GET)
     public HttpEntity<String> helloWorld() {
         return new ResponseEntity<String>("Hello TED #12", HttpStatus.OK);
     }
 
+    @CrossOrigin()
     @RequestMapping(method = RequestMethod.GET, value = "/username")
     public HttpEntity<List<String>> getAllUserNames() {
         List<String> allUserNames = userService.getAllUserNames();
         return new ResponseEntity<List<String>>(allUserNames, HttpStatus.OK);
     }
 
+    @CrossOrigin()
     @RequestMapping(method = RequestMethod.POST, value = "/user")
     public HttpEntity<User> saveSurvey(@RequestBody User user) {
         User savedUser = userService.saveUser(user);
