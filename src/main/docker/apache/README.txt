@@ -1,4 +1,5 @@
 #Create Docker Container.
+docker build -t apache .
 # param "-p 9999:80" Port forwarding local port 9999 to docker port 80.
 # param "ted12Apache" container name.
 # param "apache" image name.
