@@ -3,10 +3,10 @@
  */
 $(function() {
     $("#submitButton").click(function () {
-        var val = $("#submitButton").val();
+        var val = $("#nameInput").val();
         $.ajax({
             type: "POST",
-            url: "/user",
+            url: "http://192.168.99.100:8080/user",
             data: val,
             success: function () {
                 alert('success');
