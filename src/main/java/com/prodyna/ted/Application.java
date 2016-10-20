@@ -19,28 +19,28 @@ import com.prodyna.ted.service.UserService;
 @SpringBootApplication
 @RestController
 public class Application {
-	
-	@Autowired
-	private UserService userService;
 
-	@RequestMapping(value="/helloworld", method = RequestMethod.GET)
-	public HttpEntity<String> helloWorld() {
-		return new ResponseEntity<String>("Hello TED #12", HttpStatus.OK);
-	}
-	
-	@RequestMapping(method=RequestMethod.GET, value="/username")
-	public HttpEntity<List<String>> getAllUserNames() {
-		List<String> allUserNames = userService.getAllUserNames();
-		return new ResponseEntity<List<String>>(allUserNames, HttpStatus.OK);
-	}
-	
-	@RequestMapping(method=RequestMethod.POST, value="/user")
-	public HttpEntity<User> saveSurvey(@RequestBody User user) {
-		User savedUser = userService.saveUser(user);
-		return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
-}
-	
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+    @Autowired
+    private UserService userService;
+
+    @RequestMapping(value = "/helloworld", method = RequestMethod.GET)
+    public HttpEntity<String> helloWorld() {
+        return new ResponseEntity<String>("Hello TED #12", HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/username")
+    public HttpEntity<List<String>> getAllUserNames() {
+        List<String> allUserNames = userService.getAllUserNames();
+        return new ResponseEntity<List<String>>(allUserNames, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/user")
+    public HttpEntity<User> saveSurvey(@RequestBody User user) {
+        User savedUser = userService.saveUser(user);
+        return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 }
