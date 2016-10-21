@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <title>TED 12</title>
     <script src="app/jquery-3.1.1.min.js"></script>
+    <script src="app/angular.min.js"></script>
     <script src="app/main.js"></script>
 </head>
 <body>
+<div ng-app="myApp" ng-controller="MainController">
     First name:<br>
     <input id="nameInput" type="text" name="firstname"><br>
-    <button id="submitButton">Submit</button>
+    <button id="submitButton" ng-click="onSubmitClick()">Submit</button>
+
+    <div ng-if="userNames.length > 0">
+        <table>
+            <thead>
+            <td>Usernames:</td>
+            </thead>
+            <tr ng-repeat="userName in userNames track by $index">
+                <td ng-bind="userName"></td>
+            </tr>
+        </table>
+    </div>
+</div>
 </body>
 </html>
