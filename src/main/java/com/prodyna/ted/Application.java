@@ -54,7 +54,7 @@ public class Application {
 
     @CrossOrigin()
     @RequestMapping(method = RequestMethod.DELETE, value = "/user/{id}")
-    public HttpEntity<Void> deleteUserById(@PathVariable Long id) {
+    public HttpEntity<Void> deleteUserById(@PathVariable(name = "id") Long id) {
         userService.deleteUserById(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
