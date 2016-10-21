@@ -8,7 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.prodyna.ted.entity.User;
 import com.prodyna.ted.service.UserService;
@@ -31,6 +35,20 @@ public class Application {
     public HttpEntity<List<String>> getAllUserNames() {
         List<String> allUserNames = userService.getAllUserNames();
         return new ResponseEntity<List<String>>(allUserNames, HttpStatus.OK);
+    }
+
+    @CrossOrigin()
+    @RequestMapping(method = RequestMethod.GET, value = "/user")
+    public HttpEntity<List<User>> getAllUsers() {
+        List<User> allUsers = userService.getAllUsers();
+        return new ResponseEntity<List<User>>(allUsers, HttpStatus.OK);
+    }
+
+    @CrossOrigin()
+    @RequestMapping(method = RequestMethod.DELETE, value = "/user")
+    public HttpEntity<Void> getUser(User user) {
+        userService.deleteUser(user);
+        return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
     @CrossOrigin()

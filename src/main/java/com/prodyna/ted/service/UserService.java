@@ -18,22 +18,30 @@ import com.prodyna.ted.repository.UserRepository;
  */
 @Service
 public class UserService {
-	
-	@Autowired
-	private UserRepository userRepository;
-	
-	public List<String> getAllUserNames() {
-		List<String> allUserNames = new ArrayList<>();
-		for (User user : userRepository.findAll()) {
-			allUserNames.add(user.getName());
-		}
-		return allUserNames;
-		
-	}
-	
-	public User saveUser(User user) {
-		User savedUser = userRepository.save(user);
-		return savedUser;
-	}
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public List<String> getAllUserNames() {
+        List<String> allUserNames = new ArrayList<>();
+        for (User user : userRepository.findAll()) {
+            allUserNames.add(user.getName());
+        }
+        return allUserNames;
+
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public User saveUser(User user) {
+        User savedUser = userRepository.save(user);
+        return savedUser;
+    }
+
+    public void deleteUser(User user) {
+        userRepository.delete(user);
+    }
 
 }
