@@ -6,6 +6,7 @@ package com.prodyna.ted.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.prodyna.ted.entity.User;
 
 /**
@@ -13,7 +14,10 @@ import com.prodyna.ted.entity.User;
  *
  */
 public interface UserRepository extends JpaRepository<User, Long> {
-	
-	public List<User> findAll();
+
+    @Override
+    public List<User> findAll();
+
+    public void deleteUserById(Long id);
 
 }
