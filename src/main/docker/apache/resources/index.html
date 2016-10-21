@@ -5,24 +5,29 @@
     <title>TED 12</title>
     <script src="app/jquery-3.1.1.min.js"></script>
     <script src="app/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="app/bootstrap.min.css">
     <script src="app/main.js"></script>
 </head>
 <body>
-<div ng-app="myApp" ng-controller="MainController">
+<div ng-app="myApp" ng-controller="MainController" class="container well">
+    <h1><img src="img/mchammer.gif"> DOCKER SUPER EXTREM FUN<img src="img/mchammer.gif"></h1>
+    <marquee><h2>BEST WEBPAGE IN DA WORLD!!!1111einself</h2></marquee>
     First name:<br>
     <input id="nameInput" type="text" name="firstname"><br>
-    <button id="submitButton" ng-click="onSubmitClick()">Submit</button>
+    <button class="btn btn-primary" id="submitButton" ng-click="onSubmitClick()">Submit</button>
+    <button class="btn" ng-click="showList = !showList">List</button>
 
-    <button ng-click="showList = !showList">List</button>
     <div ng-if="showList === true">
-        <table>
-            <thead>
-            <td>Usernames:</td>
-            </thead>
-            <tr ng-repeat="userName in userNames track by $index">
-                <td ng-bind="userName"></td>
-            </tr>
-        </table>
+        <section id="tables">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                <td><h3>Usernames:</h3></td>
+                </thead>
+                <tr ng-repeat="userName in userNames track by $index">
+                    <td ng-if="userName !== ''" ng-bind="userName"></td>
+                </tr>
+            </table>
+        </section>
     </div>
 </div>
 </body>
