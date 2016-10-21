@@ -19,7 +19,7 @@ myApp.controller('MainController', ['$scope', function ($scope) {
                 console.log("It worked! Id: " + e.id);
                 console.log("Refresh usernames.");
 
-                getUsernames();
+                getUsers();
             },
             error: function (request, status, error) {
                 console.error("Error: " + request.responseText);
@@ -30,7 +30,8 @@ myApp.controller('MainController', ['$scope', function ($scope) {
     var REST_PORT = "8080";
     var restUrls = {
         addUser: '/user',
-        showUser: '/username',
+        showUser: '/user',
+        deleteUser: '/user',
         helloworld: '/helloworld'
     };
 
@@ -39,7 +40,7 @@ myApp.controller('MainController', ['$scope', function ($scope) {
     }
 
 
-    function getUsernames() {
+    function getUsers() {
         $.ajax({
             type: "GET",
             url: getUrl() + restUrls.showUser,
@@ -47,7 +48,8 @@ myApp.controller('MainController', ['$scope', function ($scope) {
             success: function (e) {
                 console.log("It worked! Data: " + e);
 
-                $scope.userNames = e;
+                $scope.users = e;
+                $scope.$apply();
             },
             error: function (request, status, error) {
                 console.error("Error: " + request.responseText);
@@ -55,8 +57,24 @@ myApp.controller('MainController', ['$scope', function ($scope) {
         });
     }
 
-    $scope.userNames = [];
+    $scope.deleteUserById = function (userId) {
+        $.ajax({
+            type: "DELETE",
+            url: getUrl() + restUrls.deleteUser + '/'+userId,
+            contentType: "application/json; charset=utf-8",
+            success: function (e) {
+                console.log("It worked! Data: " + e);
+                getUsers();
+                $scope.$apply();
+            },
+            error: function (request, status, error) {
+                console.error("Error: " + request.responseText);
+            }
+        });
+    };
+
+    $scope.users = [];
     $scope.showList = false;
-    getUsernames();
+    getUsers();
 
 }]);
