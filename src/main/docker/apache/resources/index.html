@@ -13,7 +13,8 @@
     <input id="nameInput" type="text" name="firstname"><br>
     <button id="submitButton" ng-click="onSubmitClick()">Submit</button>
 
-    <div ng-if="userNames.length > 0">
+    <button ng-click="showList = !showList">List</button>
+    <div ng-if="showList === true">
         <table>
             <thead>
             <td>Usernames:</td>
