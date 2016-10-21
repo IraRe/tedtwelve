@@ -9,6 +9,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,8 +53,8 @@ public class Application {
     }
 
     @CrossOrigin()
-    @RequestMapping(method = RequestMethod.DELETE, value = "/user")
-    public HttpEntity<Void> deleteUserById(@RequestBody Long id) {
+    @RequestMapping(method = RequestMethod.DELETE, value = "/user/{id}")
+    public HttpEntity<Void> deleteUserById(@PathVariable Long id) {
         userService.deleteUserById(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
