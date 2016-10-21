@@ -38,6 +38,7 @@ myApp.controller('MainController', ['$scope', function ($scope) {
         return window.location.protocol + "//" + window.location.hostname + ":" + REST_PORT;
     }
 
+
     function getUsernames() {
         $.ajax({
             type: "GET",
@@ -45,6 +46,7 @@ myApp.controller('MainController', ['$scope', function ($scope) {
             contentType: "application/json; charset=utf-8",
             success: function (e) {
                 console.log("It worked! Data: " + e);
+
                 $scope.userNames = e;
             },
             error: function (request, status, error) {
@@ -53,6 +55,8 @@ myApp.controller('MainController', ['$scope', function ($scope) {
         });
     }
 
-    $scope.userNames = getUsernames();
+    $scope.userNames = [];
+    $scope.showList = false;
+    getUsernames();
 
 }]);
